@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "allow camera permission";
+NSPhotoLibraryUsageDescription = "allow access to media";
+NSMicrophoneUsageDescription = "allow microphone permission";
+NSLocationWhenInUseUsageDescription = "allow location permission";
+PermissionGroupNotification = "allow notification permission";
+NSCalendarsUsageDescription = "allow calendar permission";
+NSBluetoothAlwaysUsageDescription = "allow bluetooth permission";

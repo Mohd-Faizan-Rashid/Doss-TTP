@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "கேமரா அனுமதியை அனுமதிக்கவும்";
+NSPhotoLibraryUsageDescription = "ஊடக அணுகலை அனுமதிக்கவும்";
+NSMicrophoneUsageDescription = "மைக்ரோஃபோன் அனுமதியை அனுமதிக்கவும்";
+NSLocationWhenInUseUsageDescription = "இருப்பிட அனுமதியை அனுமதிக்கவும்";
+PermissionGroupNotification = "அறிவிப்பு அனுமதியை அனுமதிக்கவும்";
+NSCalendarsUsageDescription = "காலண்டர் அனுமதியை அனுமதிக்கவும்";
+NSBluetoothAlwaysUsageDescription = "புளூடூத் அனுமதியை அனுமதிக்கவும்";

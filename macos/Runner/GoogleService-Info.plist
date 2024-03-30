@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>17666284699-slo8n0kcj5du638h915g37mvultnvjl0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.17666284699-slo8n0kcj5du638h915g37mvultnvjl0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>17666284699-kgab6ive1msdfp9rn6pflcc89t4f3f82.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDww2718va2EaKS0Uq9Z7qXAOWKc_iTpgc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>17666284699</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>www.alora.com</string>
+	<key>PROJECT_ID</key>
+	<string>my-app-2vrxhv</string>
+	<key>STORAGE_BUCKET</key>
+	<string>my-app-2vrxhv.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:17666284699:ios:07d01ee2fc3afa6d4d7a3e</string>
+	<key>DATABASE_URL</key>
+	<string>https://my-app-2vrxhv-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

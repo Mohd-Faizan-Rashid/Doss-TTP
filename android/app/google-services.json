@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "17666284699",
+    "firebase_url": "https://my-app-2vrxhv-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "my-app-2vrxhv",
+    "storage_bucket": "my-app-2vrxhv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17666284699:android:ee2bd515d8ded8094d7a3e",
+        "android_client_info": {
+          "package_name": "www.alora.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17666284699-mqagtnoqje8aaai1p2mvl3ibjdsiu39c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "www.alora.com",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "17666284699-p9ptfuqhe69jt959c2e272bklpor5civ.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKXYbpwclBPk8El3zET8AdnnYr4R7wfTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17666284699-27pllud4cbahe9vc73t7fvqbublobmb0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "17666284699-slo8n0kcj5du638h915g37mvultnvjl0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "www.alora.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
