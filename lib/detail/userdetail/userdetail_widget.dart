@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/chat_group/empty_state_simple/empty_state_simple_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -192,9 +193,8 @@ class _UserdetailWidgetState extends State<UserdetailWidget> {
                                       'USERDETAIL_PAGE_solidComments_ICN_ON_TAP');
                                   logFirebaseEvent(
                                       'IconButton_update_page_state');
-                                  setState(() {
-                                    _model.addToUserfre(widget.usersee!);
-                                  });
+                                  _model.addToUserfre(widget.usersee!);
+                                  setState(() {});
                                   if (rowChatsRecord?.reference != null) {
                                     // updateChat
                                     logFirebaseEvent('IconButton_updateChat');
@@ -628,6 +628,10 @@ class _UserdetailWidgetState extends State<UserdetailWidget> {
                         ),
                       ],
                     ),
+                    Divider(
+                      thickness: 2.0,
+                      color: FlutterFlowTheme.of(context).alternate,
+                    ),
                     Expanded(
                       child: Padding(
                         padding:
@@ -658,6 +662,24 @@ class _UserdetailWidgetState extends State<UserdetailWidget> {
                             }
                             List<PostRecord> gridViewPostRecordList =
                                 snapshot.data!;
+                            if (gridViewPostRecordList.isEmpty) {
+                              return Center(
+                                child: EmptyStateSimpleWidget(
+                                  icon: Icon(
+                                    Icons.post_add_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 50.0,
+                                  ),
+                                  title: FFLocalizations.of(context).getText(
+                                    '7e6vxk4c' /* no post */,
+                                  ),
+                                  body: FFLocalizations.of(context).getText(
+                                    'atbz4y91' /* this user has not post anythin... */,
+                                  ),
+                                ),
+                              );
+                            }
                             return GridView.builder(
                               padding: EdgeInsets.zero,
                               gridDelegate:

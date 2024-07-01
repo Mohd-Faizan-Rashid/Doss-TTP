@@ -454,7 +454,6 @@ class _CreateeventWidgetState extends State<CreateeventWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController1Validator.asValidator(context),
                   ),
@@ -835,7 +834,6 @@ class _CreateeventWidgetState extends State<CreateeventWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController2Validator.asValidator(context),
                   ),
@@ -902,7 +900,6 @@ class _CreateeventWidgetState extends State<CreateeventWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController3Validator.asValidator(context),
                   ),
@@ -1125,7 +1122,6 @@ class _CreateeventWidgetState extends State<CreateeventWidget> {
                                   fontFamily: 'Manrope',
                                   letterSpacing: 0.0,
                                 ),
-                            minLines: null,
                             validator: _model.textController4Validator
                                 .asValidator(context),
                           ),

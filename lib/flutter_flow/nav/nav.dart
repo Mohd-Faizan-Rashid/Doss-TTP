@@ -201,8 +201,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             eventref: params.getParam(
               'eventref',
               ParamType.DocumentReference,
-              false,
-              ['users', 'EVENTS'],
+              isList: false,
+              collectionNamePath: ['users', 'EVENTS'],
             ),
           ),
         ),
@@ -213,8 +213,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             usersee: params.getParam(
               'usersee',
               ParamType.DocumentReference,
-              false,
-              ['users'],
+              isList: false,
+              collectionNamePath: ['users'],
             ),
           ),
         ),
@@ -225,8 +225,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             artpee: params.getParam(
               'artpee',
               ParamType.DocumentReference,
-              false,
-              ['users', 'artp'],
+              isList: false,
+              collectionNamePath: ['users', 'artp'],
             ),
           ),
         ),
@@ -237,8 +237,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             postref: params.getParam(
               'postref',
               ParamType.DocumentReference,
-              false,
-              ['users', 'post'],
+              isList: false,
+              collectionNamePath: ['users', 'post'],
             ),
           ),
         ),
@@ -249,8 +249,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             pref: params.getParam(
               'pref',
               ParamType.DocumentReference,
-              false,
-              ['users', 'post'],
+              isList: false,
+              collectionNamePath: ['users', 'post'],
             ),
           ),
         ),
@@ -284,8 +284,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             artref: params.getParam(
               'artref',
               ParamType.DocumentReference,
-              false,
-              ['users', 'artp'],
+              isList: false,
+              collectionNamePath: ['users', 'artp'],
             ),
           ),
         ),
@@ -343,6 +343,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'mytheme',
+          path: '/mytheme',
+          builder: (context, params) => const MythemeWidget(),
+        ),
+        FFRoute(
+          name: 'chat_ai_Screen',
+          path: '/chatAiScreen',
+          builder: (context, params) => const ChatAiScreenWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -420,7 +430,7 @@ extension _GoRouterStateExtensions on GoRouterState {
       extra != null ? extra as Map<String, dynamic> : {};
   Map<String, dynamic> get allParams => <String, dynamic>{}
     ..addAll(pathParameters)
-    ..addAll(queryParameters)
+    ..addAll(uri.queryParameters)
     ..addAll(extraMap);
   TransitionInfo get transitionInfo => extraMap.containsKey(kTransitionInfoKey)
       ? extraMap[kTransitionInfoKey] as TransitionInfo
@@ -439,7 +449,7 @@ class FFParameters {
   // present is the special extra parameter reserved for the transition info.
   bool get isEmpty =>
       state.allParams.isEmpty ||
-      (state.extraMap.length == 1 &&
+      (state.allParams.length == 1 &&
           state.extraMap.containsKey(kTransitionInfoKey));
   bool isAsyncParam(MapEntry<String, dynamic> param) =>
       asyncParams.containsKey(param.key) && param.value is String;
@@ -460,11 +470,11 @@ class FFParameters {
 
   dynamic getParam<T>(
     String paramName,
-    ParamType type, [
+    ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
     StructBuilder<T>? structBuilder,
-  ]) {
+  }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
     }
@@ -515,7 +525,7 @@ class FFRoute {
           }
 
           if (requireAuth && !appStateNotifier.loggedIn) {
-            appStateNotifier.setRedirectLocationIfUnset(state.location);
+            appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
             return '/loginPage';
           }
           return null;
@@ -603,8 +613,8 @@ class _RouteErrorBuilderState extends State<_RouteErrorBuilder> {
   void initState() {
     super.initState();
     // Handle erroneous links from Firebase Dynamic Links.
-    if (widget.state.location.startsWith('/link') &&
-        widget.state.location.contains('request_ip_version')) {
+    if (widget.state.uri.toString().startsWith('/link') &&
+        widget.state.uri.toString().contains('request_ip_version')) {
       SchedulerBinding.instance.addPostFrameCallback((_) => context.go('/'));
     }
   }
@@ -621,7 +631,7 @@ class RootPageContext {
   static bool isInactiveRootPage(BuildContext context) {
     final rootPageContext = context.read<RootPageContext?>();
     final isRootPage = rootPageContext?.isRootPage ?? false;
-    final location = GoRouter.of(context).location;
+    final location = GoRouterState.of(context).uri.toString();
     return isRootPage &&
         location != '/' &&
         location != rootPageContext?.errorRoute;
@@ -631,4 +641,14 @@ class RootPageContext {
         value: RootPageContext(true, errorRoute),
         child: child,
       );
+}
+
+extension GoRouterLocationExtension on GoRouter {
+  String getCurrentLocation() {
+    final RouteMatch lastMatch = routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
 }

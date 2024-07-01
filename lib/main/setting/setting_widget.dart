@@ -1,13 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/main/languages/languages_widget.dart';
-import '/main/posteditdelete_copy/posteditdelete_copy_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'setting_model.dart';
@@ -20,27 +17,10 @@ class SettingWidget extends StatefulWidget {
   State<SettingWidget> createState() => _SettingWidgetState();
 }
 
-class _SettingWidgetState extends State<SettingWidget>
-    with TickerProviderStateMixin {
+class _SettingWidgetState extends State<SettingWidget> {
   late SettingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = {
-    'containerOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(115.0, 0.0),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
@@ -48,13 +28,6 @@ class _SettingWidgetState extends State<SettingWidget>
     _model = createModel(context, () => SettingModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'setting'});
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -547,25 +520,9 @@ class _SettingWidgetState extends State<SettingWidget>
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           logFirebaseEvent('SETTING_PAGE_Row_mnkly89d_ON_TAP');
-                          logFirebaseEvent('Row_bottom_sheet');
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: const PosteditdeleteCopyWidget(),
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
+                          logFirebaseEvent('Row_navigate_to');
+
+                          context.pushNamed('mytheme');
                         },
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -599,178 +556,6 @@ class _SettingWidgetState extends State<SettingWidget>
                               ),
                             ),
                           ].divide(const SizedBox(width: 40.0)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                    child: Container(
-                      width: 400.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF1F4F8),
-                        borderRadius: BorderRadius.circular(12.0),
-                        border: Border.all(
-                          color: const Color(0xFFE0E3E7),
-                          width: 1.0,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'SETTING_PAGE_Container_8v38b5b0_ON_TAP');
-                                  logFirebaseEvent(
-                                      'Container_set_dark_mode_settings');
-                                  setDarkModeSetting(context, ThemeMode.light);
-                                },
-                                child: Container(
-                                  width: 115.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.white
-                                        : const Color(0xFFF1F4F8),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    border: Border.all(
-                                      color: valueOrDefault<Color>(
-                                        Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? const Color(0xFFE0E3E7)
-                                            : const Color(0xFFF1F4F8),
-                                        const Color(0xFFE0E3E7),
-                                      ),
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.wb_sunny_rounded,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? const Color(0xFF14181B)
-                                            : const Color(0xFF57636C),
-                                        size: 16.0,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            '44skosko' /* Light Mode */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.light
-                                                    ? const Color(0xFF14181B)
-                                                    : const Color(0xFF57636C),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'SETTING_PAGE_Container_8ircu1os_ON_TAP');
-                                  logFirebaseEvent(
-                                      'Container_set_dark_mode_settings');
-                                  setDarkModeSetting(context, ThemeMode.dark);
-                                },
-                                child: Container(
-                                  width: 115.0,
-                                  height: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? Colors.white
-                                        : const Color(0xFFF1F4F8),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    border: Border.all(
-                                      color: valueOrDefault<Color>(
-                                        Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? const Color(0xFFE0E3E7)
-                                            : const Color(0xFFF1F4F8),
-                                        const Color(0xFFF1F4F8),
-                                      ),
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.nightlight_round,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? const Color(0xFF14181B)
-                                            : const Color(0xFF57636C),
-                                        size: 16.0,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'cqahytg4' /* Dark Mode */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Outfit',
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.dark
-                                                    ? const Color(0xFF14181B)
-                                                    : const Color(0xFF57636C),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnActionTrigger(
-                                animationsMap[
-                                    'containerOnActionTriggerAnimation']!,
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ),

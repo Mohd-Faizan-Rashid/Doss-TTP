@@ -2,6 +2,6 @@ NSCameraUsageDescription = "कैमरे की अनुमति दें"
 NSPhotoLibraryUsageDescription = "मीडिया तक पहुंच की अनुमति दें";
 NSMicrophoneUsageDescription = "माइक्रोफ़ोन अनुमति दें";
 NSLocationWhenInUseUsageDescription = "स्थान की अनुमति दें";
-PermissionGroupNotification = "अधिसूचना अनुमति दें";
+PermissionGroupNotification = "अधिसूचना की अनुमति दें";
 NSCalendarsUsageDescription = "कैलेंडर अनुमति दें";
 NSBluetoothAlwaysUsageDescription = "ब्लूटूथ अनुमति दें";

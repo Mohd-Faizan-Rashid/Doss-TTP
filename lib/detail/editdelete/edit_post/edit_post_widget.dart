@@ -519,7 +519,6 @@ class _EditPostWidgetState extends State<EditPostWidget> {
                               ),
                           textAlign: TextAlign.start,
                           maxLines: null,
-                          minLines: null,
                           cursorColor: FlutterFlowTheme.of(context).primary,
                           validator: _model.textControllerValidator
                               .asValidator(context),

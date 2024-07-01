@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "allow location permission";
 PermissionGroupNotification = "allow notification permission";
 NSCalendarsUsageDescription = "allow calendar permission";
 NSBluetoothAlwaysUsageDescription = "allow bluetooth permission";
+NSContactsUsageDescription = "allow contacts permission";

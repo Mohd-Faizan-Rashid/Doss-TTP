@@ -76,30 +76,32 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                     )
                     .orderBy('timestamp', descending: true),
                 limit: 200,
-              )..listen((snapshot) async {
+              )..listen((snapshot) {
                   List<ChatMessagesRecord> listViewChatMessagesRecordList =
                       snapshot;
                   if (_model.listViewPreviousSnapshot != null &&
                       !const ListEquality(ChatMessagesRecordDocumentEquality())
                           .equals(listViewChatMessagesRecordList,
                               _model.listViewPreviousSnapshot)) {
-                    logFirebaseEvent(
-                        'CHAT_THREAD_COMPONENT_ListView_px1w4gdk_');
-                    if (!widget.chatRef!.lastMessageSeenBy
-                        .contains(currentUserReference)) {
-                      logFirebaseEvent('ListView_backend_call');
+                    () async {
+                      logFirebaseEvent(
+                          'CHAT_THREAD_COMPONENT_ListView_px1w4gdk_');
+                      if (!widget.chatRef!.lastMessageSeenBy
+                          .contains(currentUserReference)) {
+                        logFirebaseEvent('ListView_backend_call');
 
-                      await widget.chatRef!.reference.update({
-                        ...mapToFirestore(
-                          {
-                            'last_message_seen_by':
-                                FieldValue.arrayUnion([currentUserReference]),
-                          },
-                        ),
-                      });
-                    }
+                        await widget.chatRef!.reference.update({
+                          ...mapToFirestore(
+                            {
+                              'last_message_seen_by':
+                                  FieldValue.arrayUnion([currentUserReference]),
+                            },
+                          ),
+                        });
+                      }
 
-                    setState(() {});
+                      setState(() {});
+                    }();
                   }
                   _model.listViewPreviousSnapshot = snapshot;
                 }),
@@ -361,10 +363,9 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                             if (_model.uploadedFileUrl != '') {
                               logFirebaseEvent(
                                   'IconButton_update_component_state');
-                              setState(() {
-                                _model.addToImagesUploaded(
-                                    _model.uploadedFileUrl);
-                              });
+                              _model
+                                  .addToImagesUploaded(_model.uploadedFileUrl);
+                              setState(() {});
                             }
                           },
                         ),
@@ -464,9 +465,8 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
 
                                       logFirebaseEvent(
                                           'TextField_update_component_state');
-                                      setState(() {
-                                        _model.imagesUploaded = [];
-                                      });
+                                      _model.imagesUploaded = [];
+                                      setState(() {});
 
                                       setState(() {});
                                     },
@@ -548,6 +548,7 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     maxLines: 12,
+                                    minLines: 1,
                                     cursorColor:
                                         FlutterFlowTheme.of(context).primary,
                                     validator: _model.textControllerValidator
@@ -669,9 +670,8 @@ class _ChatThreadComponentWidgetState extends State<ChatThreadComponentWidget> {
 
                                         logFirebaseEvent(
                                             'IconButton_update_component_state');
-                                        setState(() {
-                                          _model.imagesUploaded = [];
-                                        });
+                                        _model.imagesUploaded = [];
+                                        setState(() {});
                                       } finally {
                                         await firestoreBatch.commit();
                                       }

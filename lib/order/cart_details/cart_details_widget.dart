@@ -450,9 +450,9 @@ class _CartDetailsWidgetState extends State<CartDetailsWidget> {
                                                                           logFirebaseEvent(
                                                                               'Icon_update_app_state');
                                                                           FFAppState()
-                                                                              .update(() {
-                                                                            FFAppState().removeFromMycart(menuItemArtpRecord.reference);
-                                                                          });
+                                                                              .removeFromMycart(menuItemArtpRecord.reference);
+                                                                          FFAppState()
+                                                                              .update(() {});
                                                                         },
                                                                         child:
                                                                             const Icon(

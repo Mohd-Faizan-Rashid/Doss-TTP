@@ -77,6 +77,8 @@
     <string>allow calendar permission</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
     <string>allow bluetooth permission</string>
+	<key>NSContactsUsageDescription</key>
+    <string>allow contacts permission</string>
 
 
 	<key>UILaunchStoryboardName</key>
@@ -98,6 +100,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-
+  <key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1253755758102111~9014705924</string>
+	<key>SKAdNetworkItems</key>
+		<array>
+			<dict>
+				<key>SKAdNetworkIdentifier</key>
+				<string>cstr6suwn9.skadnetwork</string>
+			</dict>
+		</array>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 </dict>
 </plist>

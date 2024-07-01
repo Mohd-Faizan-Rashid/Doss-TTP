@@ -268,7 +268,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                 postDescription: _model.textController.text,
                                 postUser: currentUserReference,
                                 timePosted: getCurrentTimestamp,
-                                postVedio: _model.uploadedFileUrl2,
+                                postVedio: _model.uploadedFileUrl2 != ''
+                                    ? _model.uploadedFileUrl2
+                                    : null,
                                 postusr: currentUserDisplayName,
                                 postuer: currentUserEmail,
                                 postimg: currentUserPhoto,
@@ -474,7 +476,6 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                           ),
                       textAlign: TextAlign.start,
                       maxLines: null,
-                      minLines: null,
                       cursorColor: FlutterFlowTheme.of(context).primary,
                       validator:
                           _model.textControllerValidator.asValidator(context),

@@ -99,8 +99,8 @@ class _ActionWidgetState extends State<ActionWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 2.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                     width: 1.0,
                   ),
                 ),
@@ -133,8 +133,8 @@ class _ActionWidgetState extends State<ActionWidget> {
                       ),
                   elevation: 0.0,
                   borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 0.0,
+                    color: Color(0xFFFF5300),
+                    width: 1.0,
                   ),
                 ),
               ),

@@ -560,6 +560,7 @@ class _PostdetailWidgetState extends State<PostdetailWidget> {
                                                         milliseconds: 500),
                                                     curve: Curves.ease,
                                                   );
+                                                  setState(() {});
                                                 },
                                                 effect: const smooth_page_indicator
                                                     .ExpandingDotsEffect(

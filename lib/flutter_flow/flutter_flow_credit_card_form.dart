@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+// ignore: implementation_imports
+import 'package:flutter_credit_card/src/masked_text_controller.dart';
 
 export 'package:flutter_credit_card/flutter_credit_card.dart'
     show CreditCardModel;
@@ -36,7 +38,7 @@ class FlutterFlowCreditCardForm extends StatefulWidget {
 }
 
 class _FlutterFlowCreditCardFormState extends State<FlutterFlowCreditCardForm> {
-  final MaskedTextController _cardNumberController =
+  final TextEditingController _cardNumberController =
       MaskedTextController(mask: '0000 0000 0000 0000');
   final TextEditingController _expiryDateController =
       MaskedTextController(mask: '00/00');

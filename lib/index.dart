@@ -24,7 +24,7 @@ export '/detail/userdetail/userdetail_widget.dart' show UserdetailWidget;
 export '/detail/artpiecedetail/artpiecedetail_widget.dart'
     show ArtpiecedetailWidget;
 export '/detail/postdetail/postdetail_widget.dart' show PostdetailWidget;
-export '/editdelete/edit_post/edit_post_widget.dart' show EditPostWidget;
+export '/detail/editdelete/edit_post/edit_post_widget.dart' show EditPostWidget;
 export '/order/cart_details/cart_details_widget.dart' show CartDetailsWidget;
 export '/order/cart_order_details/cart_order_details_widget.dart'
     show CartOrderDetailsWidget;
@@ -40,3 +40,6 @@ export '/chat_group/chat_2_invite_users/chat2_invite_users_widget.dart'
     show Chat2InviteUsersWidget;
 export '/chat_group/image_details/image_details_widget.dart'
     show ImageDetailsWidget;
+export '/mytheme/mytheme_widget.dart' show MythemeWidget;
+export '/chat_g_p_t_component/chat_ai_screen/chat_ai_screen_widget.dart'
+    show ChatAiScreenWidget;

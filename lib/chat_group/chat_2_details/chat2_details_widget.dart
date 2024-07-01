@@ -186,6 +186,7 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                     maxChars: 40,
                                     replacement: '…',
                                   ),
+                                  minFontSize: 10.0,
                                   style: FlutterFlowTheme.of(context)
                                       .labelSmall
                                       .override(
@@ -194,7 +195,6 @@ class _Chat2DetailsWidgetState extends State<Chat2DetailsWidget> {
                                             .primary,
                                         letterSpacing: 0.0,
                                       ),
-                                  minFontSize: 10.0,
                                 ),
                               ),
                             ],

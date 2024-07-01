@@ -336,6 +336,7 @@ class _EventdetailWidgetState extends State<EventdetailWidget> {
                                                   const Duration(milliseconds: 500),
                                               curve: Curves.ease,
                                             );
+                                            setState(() {});
                                           },
                                           effect: const smooth_page_indicator
                                               .ExpandingDotsEffect(

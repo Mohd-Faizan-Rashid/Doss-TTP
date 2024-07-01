@@ -73,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     '2x1zte4o' /* Alora */,
                   ),
                   style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily: 'Alumni Sans Pinstripe',
+                        fontFamily: 'PT Serif',
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         fontSize: 35.0,
                         letterSpacing: 0.0,

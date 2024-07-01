@@ -23,42 +23,7 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.0, -140.0),
-          end: const Offset(0.0, 0.0),
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.9, 0.9),
-          end: const Offset(1.0, 1.0),
-        ),
-        TiltEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.349, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -67,14 +32,51 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'CREATE_NEW_ACCOUNT'});
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    _model.confirmPasswordController ??= TextEditingController();
+    _model.confirmPasswordTextController ??= TextEditingController();
     _model.confirmPasswordFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.0, -140.0),
+            end: const Offset(0.0, 0.0),
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.9, 0.9),
+            end: const Offset(1.0, 1.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.349, 0),
+            end: const Offset(0, 0),
+          ),
+        ],
+      ),
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -145,9 +147,10 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                     child: Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: const EdgeInsets.all(32.0),
+                        padding: const EdgeInsets.all(24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -186,7 +189,7 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                               child: SizedBox(
                                 width: double.infinity,
                                 child: TextFormField(
-                                  controller: _model.emailAddressController,
+                                  controller: _model.emailAddressTextController,
                                   focusNode: _model.emailAddressFocusNode,
                                   autofocus: true,
                                   autofillHints: const [AutofillHints.email],
@@ -244,12 +247,11 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                         fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
-                                  minLines: null,
                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primary,
                                   validator: _model
-                                      .emailAddressControllerValidator
+                                      .emailAddressTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -260,7 +262,7 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                               child: SizedBox(
                                 width: double.infinity,
                                 child: TextFormField(
-                                  controller: _model.passwordController,
+                                  controller: _model.passwordTextController,
                                   focusNode: _model.passwordFocusNode,
                                   autofocus: true,
                                   autofillHints: const [AutofillHints.password],
@@ -333,10 +335,10 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                         fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
-                                  minLines: null,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primary,
-                                  validator: _model.passwordControllerValidator
+                                  validator: _model
+                                      .passwordTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -347,7 +349,8 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                               child: SizedBox(
                                 width: double.infinity,
                                 child: TextFormField(
-                                  controller: _model.confirmPasswordController,
+                                  controller:
+                                      _model.confirmPasswordTextController,
                                   focusNode: _model.confirmPasswordFocusNode,
                                   autofocus: true,
                                   autofillHints: const [AutofillHints.password],
@@ -421,11 +424,10 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                         fontFamily: 'Inter',
                                         letterSpacing: 0.0,
                                       ),
-                                  minLines: null,
                                   cursorColor:
                                       FlutterFlowTheme.of(context).primary,
                                   validator: _model
-                                      .confirmPasswordControllerValidator
+                                      .confirmPasswordTextControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
@@ -439,8 +441,9 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                       'CREATE_NEW_ACCOUNT_CREATE_ACCOUNT_BTN_ON');
                                   logFirebaseEvent('Button_auth');
                                   GoRouter.of(context).prepareAuthEvent();
-                                  if (_model.passwordController.text !=
-                                      _model.confirmPasswordController.text) {
+                                  if (_model.passwordTextController.text !=
+                                      _model
+                                          .confirmPasswordTextController.text) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                         content: Text(
@@ -454,8 +457,8 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                   final user =
                                       await authManager.createAccountWithEmail(
                                     context,
-                                    _model.emailAddressController.text,
-                                    _model.passwordController.text,
+                                    _model.emailAddressTextController.text,
+                                    _model.passwordTextController.text,
                                   );
                                   if (user == null) {
                                     return;
@@ -589,7 +592,7 @@ class _CreateNewAccountWidgetState extends State<CreateNewAccountWidget>
                                             'HOME_PAGE', context.mounted);
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        '3d9x3kre' /* Continue with Apple */,
+                                        'dhg8f8tf' /* Continue with Apple */,
                                       ),
                                       icon: const FaIcon(
                                         FontAwesomeIcons.apple,

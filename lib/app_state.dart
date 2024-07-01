@@ -39,6 +39,18 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _vv = _colorFromIntValue(prefs.getInt('ff_vv')) ?? _vv;
     });
+    _safeInit(() {
+      _jj = prefs
+              .getStringList('ff_jj')
+              ?.map((x) => Color(int.tryParse(x) ?? 0))
+              .toList() ??
+          _jj;
+    });
+    _safeInit(() {
+      _post =
+          prefs.getStringList('ff_post')?.map((path) => path.ref).toList() ??
+              _post;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -56,17 +68,17 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToSavepost(DocumentReference value) {
-    _savepost.add(value);
+    savepost.add(value);
     prefs.setStringList('ff_savepost', _savepost.map((x) => x.path).toList());
   }
 
   void removeFromSavepost(DocumentReference value) {
-    _savepost.remove(value);
+    savepost.remove(value);
     prefs.setStringList('ff_savepost', _savepost.map((x) => x.path).toList());
   }
 
   void removeAtIndexFromSavepost(int index) {
-    _savepost.removeAt(index);
+    savepost.removeAt(index);
     prefs.setStringList('ff_savepost', _savepost.map((x) => x.path).toList());
   }
 
@@ -74,12 +86,12 @@ class FFAppState extends ChangeNotifier {
     int index,
     DocumentReference Function(DocumentReference) updateFn,
   ) {
-    _savepost[index] = updateFn(_savepost[index]);
+    savepost[index] = updateFn(_savepost[index]);
     prefs.setStringList('ff_savepost', _savepost.map((x) => x.path).toList());
   }
 
   void insertAtIndexInSavepost(int index, DocumentReference value) {
-    _savepost.insert(index, value);
+    savepost.insert(index, value);
     prefs.setStringList('ff_savepost', _savepost.map((x) => x.path).toList());
   }
 
@@ -91,17 +103,17 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToMycart(DocumentReference value) {
-    _mycart.add(value);
+    mycart.add(value);
     prefs.setStringList('ff_mycart', _mycart.map((x) => x.path).toList());
   }
 
   void removeFromMycart(DocumentReference value) {
-    _mycart.remove(value);
+    mycart.remove(value);
     prefs.setStringList('ff_mycart', _mycart.map((x) => x.path).toList());
   }
 
   void removeAtIndexFromMycart(int index) {
-    _mycart.removeAt(index);
+    mycart.removeAt(index);
     prefs.setStringList('ff_mycart', _mycart.map((x) => x.path).toList());
   }
 
@@ -109,12 +121,12 @@ class FFAppState extends ChangeNotifier {
     int index,
     DocumentReference Function(DocumentReference) updateFn,
   ) {
-    _mycart[index] = updateFn(_mycart[index]);
+    mycart[index] = updateFn(_mycart[index]);
     prefs.setStringList('ff_mycart', _mycart.map((x) => x.path).toList());
   }
 
   void insertAtIndexInMycart(int index, DocumentReference value) {
-    _mycart.insert(index, value);
+    mycart.insert(index, value);
     prefs.setStringList('ff_mycart', _mycart.map((x) => x.path).toList());
   }
 
@@ -127,19 +139,19 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToMyCartSummary(double value) {
-    _myCartSummary.add(value);
+    myCartSummary.add(value);
     prefs.setStringList(
         'ff_myCartSummary', _myCartSummary.map((x) => x.toString()).toList());
   }
 
   void removeFromMyCartSummary(double value) {
-    _myCartSummary.remove(value);
+    myCartSummary.remove(value);
     prefs.setStringList(
         'ff_myCartSummary', _myCartSummary.map((x) => x.toString()).toList());
   }
 
   void removeAtIndexFromMyCartSummary(int index) {
-    _myCartSummary.removeAt(index);
+    myCartSummary.removeAt(index);
     prefs.setStringList(
         'ff_myCartSummary', _myCartSummary.map((x) => x.toString()).toList());
   }
@@ -148,13 +160,13 @@ class FFAppState extends ChangeNotifier {
     int index,
     double Function(double) updateFn,
   ) {
-    _myCartSummary[index] = updateFn(_myCartSummary[index]);
+    myCartSummary[index] = updateFn(_myCartSummary[index]);
     prefs.setStringList(
         'ff_myCartSummary', _myCartSummary.map((x) => x.toString()).toList());
   }
 
   void insertAtIndexInMyCartSummary(int index, double value) {
-    _myCartSummary.insert(index, value);
+    myCartSummary.insert(index, value);
     prefs.setStringList(
         'ff_myCartSummary', _myCartSummary.map((x) => x.toString()).toList());
   }
@@ -164,6 +176,76 @@ class FFAppState extends ChangeNotifier {
   set vv(Color value) {
     _vv = value;
     prefs.setInt('ff_vv', value.value);
+  }
+
+  List<Color> _jj = [const Color(0xffff5300)];
+  List<Color> get jj => _jj;
+  set jj(List<Color> value) {
+    _jj = value;
+    prefs.setStringList('ff_jj', value.map((x) => x.value.toString()).toList());
+  }
+
+  void addToJj(Color value) {
+    jj.add(value);
+    prefs.setStringList('ff_jj', _jj.map((x) => x.value.toString()).toList());
+  }
+
+  void removeFromJj(Color value) {
+    jj.remove(value);
+    prefs.setStringList('ff_jj', _jj.map((x) => x.value.toString()).toList());
+  }
+
+  void removeAtIndexFromJj(int index) {
+    jj.removeAt(index);
+    prefs.setStringList('ff_jj', _jj.map((x) => x.value.toString()).toList());
+  }
+
+  void updateJjAtIndex(
+    int index,
+    Color Function(Color) updateFn,
+  ) {
+    jj[index] = updateFn(_jj[index]);
+    prefs.setStringList('ff_jj', _jj.map((x) => x.value.toString()).toList());
+  }
+
+  void insertAtIndexInJj(int index, Color value) {
+    jj.insert(index, value);
+    prefs.setStringList('ff_jj', _jj.map((x) => x.value.toString()).toList());
+  }
+
+  List<DocumentReference> _post = [];
+  List<DocumentReference> get post => _post;
+  set post(List<DocumentReference> value) {
+    _post = value;
+    prefs.setStringList('ff_post', value.map((x) => x.path).toList());
+  }
+
+  void addToPost(DocumentReference value) {
+    post.add(value);
+    prefs.setStringList('ff_post', _post.map((x) => x.path).toList());
+  }
+
+  void removeFromPost(DocumentReference value) {
+    post.remove(value);
+    prefs.setStringList('ff_post', _post.map((x) => x.path).toList());
+  }
+
+  void removeAtIndexFromPost(int index) {
+    post.removeAt(index);
+    prefs.setStringList('ff_post', _post.map((x) => x.path).toList());
+  }
+
+  void updatePostAtIndex(
+    int index,
+    DocumentReference Function(DocumentReference) updateFn,
+  ) {
+    post[index] = updateFn(_post[index]);
+    prefs.setStringList('ff_post', _post.map((x) => x.path).toList());
+  }
+
+  void insertAtIndexInPost(int index, DocumentReference value) {
+    post.insert(index, value);
+    prefs.setStringList('ff_post', _post.map((x) => x.path).toList());
   }
 
   final _userDocQueryManager = FutureRequestManager<UsersRecord>();

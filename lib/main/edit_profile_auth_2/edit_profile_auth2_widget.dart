@@ -45,11 +45,11 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
     super.initState();
     _model = createModel(context, () => EditProfileAuth2Model());
 
-    _model.yourNameController ??=
+    _model.yourNameTextController ??=
         TextEditingController(text: currentUserDisplayName);
     _model.yourNameFocusNode ??= FocusNode();
 
-    _model.myBioController ??= TextEditingController(
+    _model.myBioTextController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.shortDescription, ''));
     _model.myBioFocusNode ??= FocusNode();
 
@@ -288,7 +288,7 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
             padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
             child: AuthUserStreamWidget(
               builder: (context) => TextFormField(
-                controller: _model.yourNameController,
+                controller: _model.yourNameTextController,
                 focusNode: _model.yourNameFocusNode,
                 autofillHints: const [AutofillHints.name],
                 textCapitalization: TextCapitalization.words,
@@ -350,10 +350,9 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                       fontFamily: 'Inter',
                       letterSpacing: 0.0,
                     ),
-                minLines: null,
                 cursorColor: FlutterFlowTheme.of(context).primary,
                 validator:
-                    _model.yourNameControllerValidator.asValidator(context),
+                    _model.yourNameTextControllerValidator.asValidator(context),
               ),
             ),
           ),
@@ -409,7 +408,7 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
             padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 12.0),
             child: AuthUserStreamWidget(
               builder: (context) => TextFormField(
-                controller: _model.myBioController,
+                controller: _model.myBioTextController,
                 focusNode: _model.myBioFocusNode,
                 textCapitalization: TextCapitalization.sentences,
                 obscureText: false,
@@ -472,9 +471,9 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                     ),
                 textAlign: TextAlign.start,
                 maxLines: 3,
-                minLines: null,
                 cursorColor: FlutterFlowTheme.of(context).primary,
-                validator: _model.myBioControllerValidator.asValidator(context),
+                validator:
+                    _model.myBioTextControllerValidator.asValidator(context),
               ),
             ),
           ),
@@ -494,11 +493,11 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
                   logFirebaseEvent('Button-Login_updateUserInfo');
 
                   await currentUserReference!.update(createUsersRecordData(
-                    displayName: _model.yourNameController.text,
+                    displayName: _model.yourNameTextController.text,
                     photoUrl: _model.uploadedFileUrl != ''
                         ? _model.uploadedFileUrl
                         : currentUserPhoto,
-                    shortDescription: _model.myBioController.text,
+                    shortDescription: _model.myBioTextController.text,
                     lastActiveTime: getCurrentTimestamp,
                     role: _model.dropDownValue,
                   ));

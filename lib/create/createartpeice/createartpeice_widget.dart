@@ -483,7 +483,6 @@ class _CreateartpeiceWidgetState extends State<CreateartpeiceWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController1Validator.asValidator(context),
                   ),
@@ -565,7 +564,6 @@ class _CreateartpeiceWidgetState extends State<CreateartpeiceWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController2Validator.asValidator(context),
                   ),
@@ -632,7 +630,6 @@ class _CreateartpeiceWidgetState extends State<CreateartpeiceWidget> {
                           fontWeight: FontWeight.w500,
                         ),
                     maxLines: null,
-                    minLines: null,
                     validator:
                         _model.textController3Validator.asValidator(context),
                   ),
@@ -705,7 +702,6 @@ class _CreateartpeiceWidgetState extends State<CreateartpeiceWidget> {
                                 fontWeight: FontWeight.w500,
                               ),
                           maxLines: null,
-                          minLines: null,
                           keyboardType: const TextInputType.numberWithOptions(
                               decimal: true),
                           validator: _model.textController4Validator
@@ -831,7 +827,6 @@ class _CreateartpeiceWidgetState extends State<CreateartpeiceWidget> {
                                         fontSize: 14.0,
                                         letterSpacing: 0.0,
                                       ),
-                                  minLines: null,
                                   validator: _model.textController5Validator
                                       .asValidator(context),
                                 ),

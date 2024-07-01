@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/chat_group/empty_state_simple/empty_state_simple_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -49,6 +50,29 @@ class _LibraryWidgetState extends State<LibraryWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).alternate,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            logFirebaseEvent('LIBRARY_FloatingActionButton_xzsrm6e6_ON');
+            logFirebaseEvent('FloatingActionButton_navigate_to');
+
+            context.pushNamed(
+              'chat_ai_Screen',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.leftToRight,
+                ),
+              },
+            );
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          elevation: 8.0,
+          child: FaIcon(
+            FontAwesomeIcons.robot,
+            color: FlutterFlowTheme.of(context).info,
+            size: 24.0,
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: FFAppState().vv,
           automaticallyImplyLeading: false,
@@ -428,10 +452,10 @@ class _LibraryWidgetState extends State<LibraryWidget> {
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 8.0),
                                               child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  '8mlk4qyr' /* 0 */,
-                                                ),
+                                                FFAppState()
+                                                    .post
+                                                    .length
+                                                    .toString(),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .headlineSmall
@@ -563,6 +587,20 @@ class _LibraryWidgetState extends State<LibraryWidget> {
                         }
                         List<PostRecord> gridViewPostRecordList =
                             snapshot.data!;
+                        if (gridViewPostRecordList.isEmpty) {
+                          return Center(
+                            child: EmptyStateSimpleWidget(
+                              icon: Icon(
+                                Icons.post_add_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 60.0,
+                              ),
+                              title: 'no post',
+                              body: 'create a new post now',
+                            ),
+                          );
+                        }
                         return GridView.builder(
                           padding: EdgeInsets.zero,
                           gridDelegate:

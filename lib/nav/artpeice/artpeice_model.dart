@@ -6,21 +6,17 @@ class ArtpeiceModel extends FlutterFlowModel<ArtpeiceWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for Column widget.
-  ScrollController? columnController;
-  // State field(s) for ListView widget.
-  ScrollController? listViewController;
+  // State field(s) for GridView widget.
+  ScrollController? gridViewController;
 
   @override
   void initState(BuildContext context) {
-    columnController = ScrollController();
-    listViewController = ScrollController();
+    gridViewController = ScrollController();
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    columnController?.dispose();
-    listViewController?.dispose();
+    gridViewController?.dispose();
   }
 }

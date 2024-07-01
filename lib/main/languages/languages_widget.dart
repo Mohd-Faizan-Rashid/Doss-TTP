@@ -71,7 +71,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                 Expanded(
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      '3fhdwc7m' /* Choose by option */,
+                      '3fhdwc7m' /* Choose an option */,
                     ),
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
                           fontFamily: 'Roboto',
@@ -120,25 +120,25 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                           FormFieldController<String>(null),
                       options: [
                         FFLocalizations.of(context).getText(
-                          'gxp8mq50' /* Urdu */,
+                          'gxp8mq50' /* Urdu ( اردو , अर्दू ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          'klxd9yi8' /* Marathi */,
+                          'klxd9yi8' /* Marathi ( मराठी ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          '2kmnyfkt' /* Tamil */,
+                          '2kmnyfkt' /* Tamil ( तामिल , தமிழ் ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          'vg7cg2vm' /* English */,
+                          'vg7cg2vm' /* English (अंग्रेज़ी ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          '6l44u3f7' /* Hindi */,
+                          '6l44u3f7' /* Hindi ( हिंदी ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          '2s2kih2s' /* Gujarati */,
+                          '2s2kih2s' /* Gujarati ( गुजराती , ગુજરાતી ) */,
                         ),
                         FFLocalizations.of(context).getText(
-                          'kettc1oa' /* Punjabi */,
+                          'kettc1oa' /* Punjabi ( पंजाबी  , ਪੰਜਾਬੀ  ) */,
                         )
                       ],
                       onChanged: (val) =>
@@ -169,6 +169,7 @@ class _LanguagesWidgetState extends State<LanguagesWidget> {
                       searchHintText: FFLocalizations.of(context).getText(
                         'mf60ybuh' /* Search for avaliable languages */,
                       ),
+                      searchCursorColor: const Color(0xFFFF5300),
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).secondaryText,

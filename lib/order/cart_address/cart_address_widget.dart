@@ -29,75 +29,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'iconButtonOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        RotateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 400.ms,
-          begin: 0.0,
-          end: 0.625,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 100.ms,
-          duration: 200.ms,
-          begin: const Offset(1.0, 1.1),
-          end: const Offset(1.0, 1.1),
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 200.ms,
-          begin: const Offset(1.1, 1.0),
-          end: const Offset(1.1, 1.0),
-        ),
-      ],
-    ),
-    'expandableOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.0, 0.0),
-          end: const Offset(1.0, 1.0),
-        ),
-      ],
-    ),
-    'iconOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.8, 0.8),
-          end: const Offset(1.0, 1.0),
-        ),
-        RotateEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 1.25,
-          end: 1.0,
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -112,42 +44,110 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
       if ((currentUserDocument?.addresses.toList() ?? []).isNotEmpty) {
         // hideNewAddress
         logFirebaseEvent('cart_address_hideNewAddress');
-        setState(() {
-          _model.showNewAddress = false;
-        });
+        _model.showNewAddress = false;
+        setState(() {});
       } else {
         // showNewAddress
         logFirebaseEvent('cart_address_showNewAddress');
-        setState(() {
-          _model.showNewAddress = true;
-          _model.selectedAddress =
-              (currentUserDocument?.addresses.toList() ?? []).first;
-        });
+        _model.showNewAddress = true;
+        _model.selectedAddress =
+            (currentUserDocument?.addresses.toList() ?? []).first;
+        setState(() {});
       }
     });
 
-    _model.expandableController = ExpandableController(initialExpanded: true);
-    _model.streetAddress2Controller1 ??= TextEditingController();
+    _model.expandableExpandableController =
+        ExpandableController(initialExpanded: true);
+    _model.streetAddress2TextController1 ??= TextEditingController();
     _model.streetAddress2FocusNode1 ??= FocusNode();
 
-    _model.streetAddress2Controller2 ??= TextEditingController();
+    _model.streetAddress2TextController2 ??= TextEditingController();
     _model.streetAddress2FocusNode2 ??= FocusNode();
 
-    _model.streetAddress2Controller3 ??= TextEditingController();
+    _model.streetAddress2TextController3 ??= TextEditingController();
     _model.streetAddress2FocusNode3 ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.cityController ??= TextEditingController();
+    _model.cityTextController ??= TextEditingController();
     _model.cityFocusNode ??= FocusNode();
 
-    _model.stateController ??= TextEditingController();
+    _model.stateTextController ??= TextEditingController();
     _model.stateFocusNode ??= FocusNode();
 
-    _model.zipCodeMobileController ??= TextEditingController();
+    _model.zipCodeMobileTextController ??= TextEditingController();
     _model.zipCodeMobileFocusNode ??= FocusNode();
 
+    animationsMap.addAll({
+      'iconButtonOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 400.0.ms,
+            begin: 0.0,
+            end: 0.625,
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 200.0.ms,
+            begin: const Offset(1.0, 1.1),
+            end: const Offset(1.0, 1.1),
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 200.0.ms,
+            begin: const Offset(1.1, 1.0),
+            end: const Offset(1.1, 1.0),
+          ),
+        ],
+      ),
+      'expandableOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'iconOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.8, 0.8),
+            end: const Offset(1.0, 1.0),
+          ),
+          RotateEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 1.25,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -419,10 +419,9 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                         // togglevalue
                                         logFirebaseEvent(
                                             'IconButton_togglevalue');
-                                        setState(() {
-                                          _model.showNewAddress =
-                                              !_model.showNewAddress;
-                                        });
+                                        _model.showNewAddress =
+                                            !_model.showNewAddress;
+                                        setState(() {});
                                         if (_model.showNewAddress == true) {
                                           // unRotateButton
                                           logFirebaseEvent(
@@ -473,8 +472,8 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         child: ExpandableNotifier(
-                                          controller:
-                                              _model.expandableController,
+                                          controller: _model
+                                              .expandableExpandableController,
                                           child: ExpandablePanel(
                                             header: Text(
                                               FFLocalizations.of(context)
@@ -551,7 +550,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                     12.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .streetAddress2Controller1,
+                                                              .streetAddress2TextController1,
                                                           focusNode: _model
                                                               .streetAddress2FocusNode1,
                                                           autofocus: false,
@@ -674,13 +673,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                          minLines: null,
                                                           cursorColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .primary,
                                                           validator: _model
-                                                              .streetAddress2Controller1Validator
+                                                              .streetAddress2TextController1Validator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -695,7 +693,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                     12.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .streetAddress2Controller2,
+                                                              .streetAddress2TextController2,
                                                           focusNode: _model
                                                               .streetAddress2FocusNode2,
                                                           autofocus: false,
@@ -818,13 +816,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                          minLines: null,
                                                           cursorColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .primary,
                                                           validator: _model
-                                                              .streetAddress2Controller2Validator
+                                                              .streetAddress2TextController2Validator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -839,7 +836,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                     12.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .streetAddress2Controller3,
+                                                              .streetAddress2TextController3,
                                                           focusNode: _model
                                                               .streetAddress2FocusNode3,
                                                           autofocus: false,
@@ -962,13 +959,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                          minLines: null,
                                                           cursorColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .primary,
                                                           validator: _model
-                                                              .streetAddress2Controller3Validator
+                                                              .streetAddress2TextController3Validator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -1088,7 +1084,6 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
-                                                                minLines: null,
                                                                 validator: _model
                                                                     .textController4Validator
                                                                     .asValidator(
@@ -1108,7 +1103,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .cityController,
+                                                                    .cityTextController,
                                                                 focusNode: _model
                                                                     .cityFocusNode,
                                                                 autofocus:
@@ -1234,13 +1229,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
-                                                                minLines: null,
                                                                 cursorColor:
                                                                     FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
                                                                 validator: _model
-                                                                    .cityControllerValidator
+                                                                    .cityTextControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -1264,7 +1258,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .stateController,
+                                                                    .stateTextController,
                                                                 focusNode: _model
                                                                     .stateFocusNode,
                                                                 autofocus:
@@ -1390,13 +1384,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
-                                                                minLines: null,
                                                                 cursorColor:
                                                                     FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
                                                                 validator: _model
-                                                                    .stateControllerValidator
+                                                                    .stateTextControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
@@ -1420,7 +1413,7 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                 child:
                                                                     TextFormField(
                                                                   controller: _model
-                                                                      .zipCodeMobileController,
+                                                                      .zipCodeMobileTextController,
                                                                   focusNode: _model
                                                                       .zipCodeMobileFocusNode,
                                                                   onFieldSubmitted:
@@ -1429,12 +1422,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                         'CART_ADDRESS_zipCodeMobile_ON_TEXTFIELD_');
                                                                     logFirebaseEvent(
                                                                         'zipCodeMobile_update_page_state');
+                                                                    _model.zipCode =
+                                                                        _model
+                                                                            .zipCodeMobileTextController
+                                                                            .text;
                                                                     setState(
-                                                                        () {
-                                                                      _model.zipCode = _model
-                                                                          .zipCodeMobileController
-                                                                          .text;
-                                                                    });
+                                                                        () {});
                                                                   },
                                                                   autofocus:
                                                                       false,
@@ -1547,14 +1540,12 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                                  minLines:
-                                                                      null,
                                                                   cursorColor:
                                                                       FlutterFlowTheme.of(
                                                                               context)
                                                                           .primary,
                                                                   validator: _model
-                                                                      .zipCodeMobileControllerValidator
+                                                                      .zipCodeMobileTextControllerValidator
                                                                       .asValidator(
                                                                           context),
                                                                 ),
@@ -1642,10 +1633,9 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                                       'CART_ADDRESS_Container_e28egs04_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Container_update_page_state');
-                                                  setState(() {
-                                                    _model.selectedAddress =
-                                                        addressesItem;
-                                                  });
+                                                  _model.selectedAddress =
+                                                      addressesItem;
+                                                  setState(() {});
                                                 },
                                                 child: AnimatedContainer(
                                                   duration: const Duration(
@@ -2155,22 +2145,22 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                               updateAddressStruct(
                                                 AddressStruct(
                                                   name: _model
-                                                      .streetAddress2Controller1
+                                                      .streetAddress2TextController1
                                                       .text,
                                                   streetAddress: _model
-                                                      .streetAddress2Controller3
+                                                      .streetAddress2TextController3
                                                       .text,
                                                   city: _model
-                                                      .cityController.text,
+                                                      .cityTextController.text,
                                                   state: _model
-                                                      .stateController.text,
+                                                      .stateTextController.text,
                                                   postalCode: _model
-                                                      .zipCodeMobileController
+                                                      .zipCodeMobileTextController
                                                       .text,
                                                   landmark: _model
                                                       .textController4.text,
                                                   homenum: _model
-                                                      .streetAddress2Controller2
+                                                      .streetAddress2TextController2
                                                       .text,
                                                 ),
                                                 clearUnsetFields: false,
@@ -2184,33 +2174,36 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                     logFirebaseEvent(
                                         'Button_clear_text_fields_pin_codes');
                                     setState(() {
-                                      _model.streetAddress2Controller1?.clear();
-                                      _model.streetAddress2Controller2?.clear();
-                                      _model.streetAddress2Controller3?.clear();
+                                      _model.streetAddress2TextController1
+                                          ?.clear();
+                                      _model.streetAddress2TextController2
+                                          ?.clear();
+                                      _model.streetAddress2TextController3
+                                          ?.clear();
                                       _model.textController4?.clear();
-                                      _model.cityController?.clear();
-                                      _model.stateController?.clear();
-                                      _model.zipCodeMobileController?.clear();
+                                      _model.cityTextController?.clear();
+                                      _model.stateTextController?.clear();
+                                      _model.zipCodeMobileTextController
+                                          ?.clear();
                                     });
                                     // addNewAddressToSelected
                                     logFirebaseEvent(
                                         'Button_addNewAddressToSelected');
-                                    setState(() {
-                                      _model.selectedAddress = AddressStruct(
-                                        name: _model
-                                            .streetAddress2Controller1.text,
-                                        streetAddress: _model
-                                            .streetAddress2Controller3.text,
-                                        city: _model.cityController.text,
-                                        state: _model.stateController.text,
-                                        postalCode:
-                                            _model.zipCodeMobileController.text,
-                                        landmark: _model.textController4.text,
-                                        homenum: _model
-                                            .streetAddress2Controller2.text,
-                                      );
-                                      _model.showNewAddress = false;
-                                    });
+                                    _model.selectedAddress = AddressStruct(
+                                      name: _model
+                                          .streetAddress2TextController1.text,
+                                      streetAddress: _model
+                                          .streetAddress2TextController3.text,
+                                      city: _model.cityTextController.text,
+                                      state: _model.stateTextController.text,
+                                      postalCode: _model
+                                          .zipCodeMobileTextController.text,
+                                      landmark: _model.textController4.text,
+                                      homenum: _model
+                                          .streetAddress2TextController2.text,
+                                    );
+                                    _model.showNewAddress = false;
+                                    setState(() {});
                                   }
                                   if (_model.selectedAddress != null) {
                                     // Create Order
@@ -2310,10 +2303,9 @@ class _CartAddressWidgetState extends State<CartAddressWidget>
                                     // clearCartPriceItems
                                     logFirebaseEvent(
                                         'Button_clearCartPriceItems');
-                                    FFAppState().update(() {
-                                      FFAppState().myCartSummary = [];
-                                      FFAppState().mycart = [];
-                                    });
+                                    FFAppState().myCartSummary = [];
+                                    FFAppState().mycart = [];
+                                    FFAppState().update(() {});
                                     logFirebaseEvent('Button_bottom_sheet');
                                     await showModalBottomSheet(
                                       isScrollControlled: true,

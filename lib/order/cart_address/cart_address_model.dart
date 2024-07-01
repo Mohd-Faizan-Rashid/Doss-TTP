@@ -12,8 +12,9 @@ class CartAddressModel extends FlutterFlowModel<CartAddressWidget> {
   String zipCode = '';
 
   AddressStruct? selectedAddress;
-  void updateSelectedAddressStruct(Function(AddressStruct) updateFn) =>
-      updateFn(selectedAddress ??= AddressStruct());
+  void updateSelectedAddressStruct(Function(AddressStruct) updateFn) {
+    updateFn(selectedAddress ??= AddressStruct());
+  }
 
   bool showNewAddress = false;
 
@@ -21,29 +22,32 @@ class CartAddressModel extends FlutterFlowModel<CartAddressWidget> {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for Expandable widget.
-  late ExpandableController expandableController;
+  late ExpandableController expandableExpandableController;
 
   // State field(s) for streetAddress2 widget.
   FocusNode? streetAddress2FocusNode1;
-  TextEditingController? streetAddress2Controller1;
-  String? Function(BuildContext, String?)? streetAddress2Controller1Validator;
+  TextEditingController? streetAddress2TextController1;
+  String? Function(BuildContext, String?)?
+      streetAddress2TextController1Validator;
   // State field(s) for streetAddress2 widget.
   FocusNode? streetAddress2FocusNode2;
-  TextEditingController? streetAddress2Controller2;
-  String? Function(BuildContext, String?)? streetAddress2Controller2Validator;
+  TextEditingController? streetAddress2TextController2;
+  String? Function(BuildContext, String?)?
+      streetAddress2TextController2Validator;
   // State field(s) for streetAddress2 widget.
   FocusNode? streetAddress2FocusNode3;
-  TextEditingController? streetAddress2Controller3;
-  String? Function(BuildContext, String?)? streetAddress2Controller3Validator;
+  TextEditingController? streetAddress2TextController3;
+  String? Function(BuildContext, String?)?
+      streetAddress2TextController3Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for city widget.
   FocusNode? cityFocusNode;
-  TextEditingController? cityController;
-  String? Function(BuildContext, String?)? cityControllerValidator;
-  String? _cityControllerValidator(BuildContext context, String? val) {
+  TextEditingController? cityTextController;
+  String? Function(BuildContext, String?)? cityTextControllerValidator;
+  String? _cityTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'lhksxy58' /* Please enter your city */,
@@ -55,9 +59,9 @@ class CartAddressModel extends FlutterFlowModel<CartAddressWidget> {
 
   // State field(s) for state widget.
   FocusNode? stateFocusNode;
-  TextEditingController? stateController;
-  String? Function(BuildContext, String?)? stateControllerValidator;
-  String? _stateControllerValidator(BuildContext context, String? val) {
+  TextEditingController? stateTextController;
+  String? Function(BuildContext, String?)? stateTextControllerValidator;
+  String? _stateTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         '4uacrifl' /* Choose a state */,
@@ -69,39 +73,39 @@ class CartAddressModel extends FlutterFlowModel<CartAddressWidget> {
 
   // State field(s) for zipCodeMobile widget.
   FocusNode? zipCodeMobileFocusNode;
-  TextEditingController? zipCodeMobileController;
-  String? Function(BuildContext, String?)? zipCodeMobileControllerValidator;
+  TextEditingController? zipCodeMobileTextController;
+  String? Function(BuildContext, String?)? zipCodeMobileTextControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   OrdersRecord? newOrder;
 
   @override
   void initState(BuildContext context) {
-    cityControllerValidator = _cityControllerValidator;
-    stateControllerValidator = _stateControllerValidator;
+    cityTextControllerValidator = _cityTextControllerValidator;
+    stateTextControllerValidator = _stateTextControllerValidator;
   }
 
   @override
   void dispose() {
-    expandableController.dispose();
+    expandableExpandableController.dispose();
     streetAddress2FocusNode1?.dispose();
-    streetAddress2Controller1?.dispose();
+    streetAddress2TextController1?.dispose();
 
     streetAddress2FocusNode2?.dispose();
-    streetAddress2Controller2?.dispose();
+    streetAddress2TextController2?.dispose();
 
     streetAddress2FocusNode3?.dispose();
-    streetAddress2Controller3?.dispose();
+    streetAddress2TextController3?.dispose();
 
     textFieldFocusNode?.dispose();
     textController4?.dispose();
 
     cityFocusNode?.dispose();
-    cityController?.dispose();
+    cityTextController?.dispose();
 
     stateFocusNode?.dispose();
-    stateController?.dispose();
+    stateTextController?.dispose();
 
     zipCodeMobileFocusNode?.dispose();
-    zipCodeMobileController?.dispose();
+    zipCodeMobileTextController?.dispose();
   }
 }

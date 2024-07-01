@@ -29,28 +29,7 @@ class _DeleteDialogWidgetState extends State<DeleteDialogWidget>
     with TickerProviderStateMixin {
   late DeleteDialogModel _model;
 
-  final animationsMap = {
-    'mouseRegionOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        TiltEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: const Offset(0.524, 0),
-          end: const Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -67,9 +46,31 @@ class _DeleteDialogWidgetState extends State<DeleteDialogWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('DELETE_DIALOG_deleteDialog_ON_INIT_STATE');
       logFirebaseEvent('deleteDialog_update_component_state');
-      setState(() {
-        _model.showDelete = false;
-      });
+      _model.showDelete = false;
+      setState(() {});
+    });
+
+    animationsMap.addAll({
+      'mouseRegionOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: const Offset(0.524, 0),
+            end: const Offset(0, 0),
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -206,9 +207,8 @@ class _DeleteDialogWidgetState extends State<DeleteDialogWidget>
                       onTap: () async {
                         logFirebaseEvent('DELETE_DIALOG_COMP_component_ON_TAP');
                         logFirebaseEvent('component_update_component_state');
-                        setState(() {
-                          _model.showDelete = true;
-                        });
+                        _model.showDelete = true;
+                        setState(() {});
                       },
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 200),

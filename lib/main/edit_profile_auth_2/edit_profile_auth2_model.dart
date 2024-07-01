@@ -14,15 +14,15 @@ class EditProfileAuth2Model extends FlutterFlowModel<EditProfileAuth2Widget> {
 
   // State field(s) for yourName widget.
   FocusNode? yourNameFocusNode;
-  TextEditingController? yourNameController;
-  String? Function(BuildContext, String?)? yourNameControllerValidator;
+  TextEditingController? yourNameTextController;
+  String? Function(BuildContext, String?)? yourNameTextControllerValidator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
   // State field(s) for myBio widget.
   FocusNode? myBioFocusNode;
-  TextEditingController? myBioController;
-  String? Function(BuildContext, String?)? myBioControllerValidator;
+  TextEditingController? myBioTextController;
+  String? Function(BuildContext, String?)? myBioTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -30,9 +30,9 @@ class EditProfileAuth2Model extends FlutterFlowModel<EditProfileAuth2Widget> {
   @override
   void dispose() {
     yourNameFocusNode?.dispose();
-    yourNameController?.dispose();
+    yourNameTextController?.dispose();
 
     myBioFocusNode?.dispose();
-    myBioController?.dispose();
+    myBioTextController?.dispose();
   }
 }
